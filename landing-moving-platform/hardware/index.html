@@ -1,0 +1,1203 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://developer.lightwarelidar.com/landing-moving-platform/hardware/">
+      
+      
+        <link rel="prev" href="../components/">
+      
+      
+        <link rel="next" href="../software/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.21">
+    
+    
+      
+        <title>Hardware - LightWare Developer Portal</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.66ac8b77.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="deep-orange">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#sensors" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="LightWare Developer Portal" class="md-header__button md-logo" aria-label="LightWare Developer Portal" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            LightWare Developer Portal
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Hardware
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="LightWare Developer Portal" class="md-nav__button md-logo" aria-label="LightWare Developer Portal" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    LightWare Developer Portal
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Welcome to LightWare's Developer Portal
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Landing on a Moving Platform
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Landing on a Moving Platform
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Summary
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../plan/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Plan
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../components/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Components
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Hardware
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Hardware
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#sensors" class="md-nav__link">
+    <span class="md-ellipsis">
+      Sensors
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Sensors">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#preparation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Preparation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mounting" class="md-nav__link">
+    <span class="md-ellipsis">
+      Mounting
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#compute-unit" class="md-nav__link">
+    <span class="md-ellipsis">
+      Compute Unit
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Compute Unit">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#preparations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Preparations
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mounting_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Mounting
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Mounting">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#voltage-regulator-and-i2c-breakout" class="md-nav__link">
+    <span class="md-ellipsis">
+      Voltage Regulator and I2C Breakout
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#raspberry-pie-port" class="md-nav__link">
+    <span class="md-ellipsis">
+      Raspberry Pi/E-Port
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#assembly" class="md-nav__link">
+    <span class="md-ellipsis">
+      Assembly
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aircraft-installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Aircraft Installation
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../software/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Software
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../conclusion/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Conclusion
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Precision Positioning
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Precision Positioning
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../precision-positioning/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Summary
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../precision-positioning/plan/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Plan
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../precision-positioning/components/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Components
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../precision-positioning/hardware/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Hardware
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../precision-positioning/software/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Software
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../precision-positioning/conclusion/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Conclusion
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Sensor Point of Interest
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Sensor Point of Interest
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../spoi/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Summary
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../spoi/plan/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Plan
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../spoi/components/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Components
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../spoi/hardware/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Hardware
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../spoi/software/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Software
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../spoi/conclusion/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Conclusion
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#sensors" class="md-nav__link">
+    <span class="md-ellipsis">
+      Sensors
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Sensors">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#preparation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Preparation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mounting" class="md-nav__link">
+    <span class="md-ellipsis">
+      Mounting
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#compute-unit" class="md-nav__link">
+    <span class="md-ellipsis">
+      Compute Unit
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Compute Unit">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#preparations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Preparations
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mounting_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Mounting
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Mounting">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#voltage-regulator-and-i2c-breakout" class="md-nav__link">
+    <span class="md-ellipsis">
+      Voltage Regulator and I2C Breakout
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#raspberry-pie-port" class="md-nav__link">
+    <span class="md-ellipsis">
+      Raspberry Pi/E-Port
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#assembly" class="md-nav__link">
+    <span class="md-ellipsis">
+      Assembly
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aircraft-installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Aircraft Installation
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  <h1>Hardware</h1>
+
+<p>We will start by putting the hardware together.</p>
+<p>First make sure you have all the parts from the previous section.</p>
+<h2 id="sensors">Sensors</h2>
+<h3 id="preparation">Preparation</h3>
+<p>First, we are going to prepare the rails and the clips that will attach the sensors on the belly of the aircraft.</p>
+<p>Secure the clips using the <em>counter sunk screws</em> as shown in this picture:</p>
+<p><img alt="Mounted clips to the rails" src="../../images/clipsonrails.png" /></p>
+<p>Next, we need to prepare the termination of the sensor to use dupont connectors.
+Out of the package, you will notice that the LW20/c comes with free wires. This is to give you options as to how to integrate, but in this case, we are going to use dupont connectors for convenience.</p>
+<p><img alt="Free Wires on LW20/c" src="../../images/freewiresonlw20.png" /></p>
+<p>Crimp the black (GND), red (VCC), white (RX/SCL) and yellow (TX/SDA) wires individually, then encase them in a connector in this order.</p>
+<p><img alt="Crimped Wires on LW20/c" src="../../images/crimpedwiresonlw20.png" /></p>
+<h3 id="mounting">Mounting</h3>
+<p>Let's start by attaching the 3D printed bracket under the M350. </p>
+<p>Flip the aircraft on its 'head' (this is why we do this now, because the compute will be there once we're done).
+Remove and save the payload screws in case you want to remove the kit later.</p>
+<p><img alt="M350 on its head" src="../../images/m350onitshead.png" /></p>
+<p>Secure both rails using the <strong>M3x10mm on the front</strong> (where the payload is) and the <strong>M3x8mm for the back.</strong></p>
+<p><img alt="Rails installed" src="../../images/railsinstalled.png" /></p>
+<p>Clip the sensor to the printed parts and use <a href="https://en.wikipedia.org/wiki/Blu_Tack">blutack</a> (may be a different color in your country) to hold the cables close to the body of the aircraft.</p>
+<p><img alt="LW20/c installed and wire attached with blutac" src="../../images/lw20installed.png" />
+<img alt="LW20/c installed and wire attached with blutac" src="../../images/lw20installedandputty.png" /></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>There are obviously more resilient ways to secure the cables for production deployment, but our approach here is of R&amp;D and quick validation of the end-to-end system.<br/></p>
+<p>You may choose to pass the cables and zip tie it all. The rails are ready for this, but you may need to extend the length of the wires for the back sensors.<br/></p>
+<p>Otherwise, you can simply guide and putty the cables along the side of the aircraft while making sure not to block the view of the obstacle avoidance sensors.</p>
+</div>
+<p>Once you have secured all four sensors, you are ready to move to the next step.</p>
+<h2 id="compute-unit">Compute Unit</h2>
+<p>Next, we are going to look at mounting the compute unit on the top of the aircraft.</p>
+<h3 id="preparations">Preparations</h3>
+<p>First, we will use the M2.5 heat-set inserts for the Raspberry Pi posts on the compute mount. 
+To insert them, simply use a soldering iron at the melting temperature of the plastic you use for printing the model.
+Pull out when sufficiently inserted.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The heat-set inserts are an optional improvements. If you want to skip them, you can simply use coarse screws - such as wood screws - into the plastic directly.</p>
+</div>
+<p><img alt="Compute mount with threaded insert posts" src="../images/computemountwiththreaded.png" /></p>
+<p>Next, we will prepare the additional board for the voltage regulator that will provide the bulk of the power to the Raspberry Pi and the I2C breakout board.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>You can choose other options for the I2C bus and the voltage regulator as long as you provide what's necessary for the pi to work.</p>
+</div>
+<p>First, we place the heat-set inserts as done before.</p>
+<p><img alt="Voltage board with inserts" src="../../images/voltageboardwithinserts.png" /></p>
+<p>Next we are going to prepare the power cables. If you've opted to the ready made cables, you can skip this. If you want to make your own:</p>
+<p>Cut two set of black and red pairs of the 20AWG silicon cable: 12cm or 4 3/4" for the power to the Pi; 16cm of 6 1/4" for the power from the E-port Dev Kit.</p>
+<p>The Pi cable (12cm) will be crimped and set in a two line dupont connector</p>
+<p><img alt="Pi power cable" src="../../images/pipowercable.png" /></p>
+<p>The E-Port Dev Kit will be soldered to an XT30 connector.</p>
+<p><img alt="E-Port power cable" src="../../images/eportpowercable.png" /></p>
+<h3 id="mounting_1">Mounting</h3>
+<h4 id="voltage-regulator-and-i2c-breakout">Voltage Regulator and I2C Breakout</h4>
+<p>To finish the add-on board, use the M3x6mm screws to secure the voltage regulator and the I2C bus breakout to the side board.</p>
+<p><img alt="Assembled side board" src="../../images/assembledsideboardnotwired.png" /></p>
+<p>Next, connect to the input terminals the E-Port power cable and the Pi power cable to the output.</p>
+<p><img alt="Assembled side board" src="../../images/assembledsideboard.png" /></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>We will set up the voltage converter soon, but for now do not power anything.</p>
+</div>
+<p>At this point the side board is fully assembled. Set it aside for now.</p>
+<h4 id="raspberry-pie-port">Raspberry Pi/E-Port</h4>
+<p>Grab the top mount and let's start with the E-Port Kit. It will sit in the bottom, under the Raspberry Pi.
+Place the E-Port kit as seen on the picture below, making sure that it sits in between the securing post.</p>
+<p><img alt="E-port on mount" src="../images/eportonmount.png" /></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>You can secure it with zip ties or bluetac. The putty will do a great work, while the Raspberry Pi posts will prevent it to fly away in case of failure.</p>
+<p>Also, note the orientation as it will matter greatly. The "Drone" USB-C port should be facing <strong>starboard side of the mount</strong>.</p>
+</div>
+<p>Verify that it isn't moving before moving to the next step.</p>
+<p>Before we move to the Pi, now is a good time to connect the USB/TTL cable to the pins on the E-Port as you'll be able to see the markings on the PCB.</p>
+<p>You can also plug in the USB-C cable that came with the kit, making sure the B side is showing upwards.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The USB-C cable used for DJI development aren't regular USB-C cable. They <strong>aren't reversable</strong>. This is why they are noted with a A side and a B side.
+Pay close attention to the orientation as described in the <a href="https://developer.dji.com/doc/payload-sdk-tutorial/en/quick-start/device-connect.html">DJI developer documentation</a>: 
+<img alt="M350 E-Port Dev Kit Connection" src="../../images/m350-eport-connect-en.png" /></p>
+<p>Don't plug to the aircraft just yet.</p>
+</div>
+<p>Time to attach the Raspberry Pi. You can choose to bring it with a case if you choose, but the mount we offer is coming with a through hole installation that's only compatible with the naked board or using the official case.
+Regardless, using the <strong>M2.5x6mm screws</strong>, secure the raspberry pi with the connectors <strong>facing the back of the aircraft</strong>.</p>
+<p>Don't over tighten.</p>
+<p><img alt="Raspberry Pi Install" src="../images/raspberrypiinstalled.png" /></p>
+<h3 id="assembly">Assembly</h3>
+<p>First, we need to prepare the SDCard for the Raspberry Pi. <a href="https://www.raspberrypi.com/documentation/computers/getting-started.html">Follow these instructions to get it done</a></p>
+<p>Once finished, place the SD Card in the Pi's slot.</p>
+<p>Next, clip the side board to the front of the Pi's mount. </p>
+<p><img alt="Side board attached, not wired" src="../images/sideboardattachednotwired.png" /></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The round clip would be enough to secure it, but if you want, you can secure them further with zip ties.</p>
+</div>
+<p>Connect the XT30 power cable to the E-Port Dev Kit's unregulated power connector.</p>
+<p><img alt="XT30 connected" src="../images/xt30connected.png" /></p>
+<p>Connect the short USB-C cable between the device USB port of the E-Port dev kit and the Raspberry Pi's - This will be our fast data line.</p>
+<p><img alt="USB-C connected" src="../images/usbcconnected.png" /></p>
+<p>Coil the USB to TTL cable around the base of the mount and connect the USB-A connector to one of the Raspberry Pi's</p>
+<p><img alt="ftdi connected" src="../images/ftdicconnected.png" /></p>
+<p>You should have something looking like this:</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><img alt="image" src="../../images/rasp-eport-connect_en.png" />
+<center>Wiring diagram from <a href="https://developer.dji.com/doc/payload-sdk-tutorial/en/quick-start/quick-guide/raspberry-pi.html">DJI's Developer Documentation</a></center></p>
+</div>
+<p>Now we can connect the I2C pins to the bus and to the Raspberry Pi.</p>
+<p>Following the marking on the bus, connect all the sensors to it.</p>
+<p><img alt="Sensor on bus" src="../images/sensoronbus.png" /></p>
+<p>Using the Dupont cables, connect each of the I2C lines to the Raspberry Pi pins</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p><center><img alt="Raspberry Pi Pinout" src="../../images/pi_pinout.png" /></p>
+<p>Pinout from <a href="https://pinout.xyz/pinout/pin27_gpio0/">pinout.xyz</a></center></p>
+</div>
+<p><img alt="I2C on Pi" src="../images/i2conpi.png" /></p>
+<p>At this point, the only unconnected cable should be the power cable output of the voltage regulator. We will plug it after we configured the regulator with the aircraft power.</p>
+<h3 id="aircraft-installation">Aircraft Installation</h3>
+<p>First, we mount the completed kit to the aircraft using the M3x8mm screws in the back and the M3x15mm in the front.</p>
+<p><img alt="Kit on M350" src="../images/kitonm350.png" /></p>
+<p>With the dev kit secured, it's time to connect the usb cable to the aircraft.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>As mentioned before, the USB-C cable used for DJI development aren't regular USB-C cable. They <strong>aren't reversable</strong>. This is why they are noted with a A side and a B side.
+Pay close attention to the orientation as described in the <a href="https://developer.dji.com/doc/payload-sdk-tutorial/en/quick-start/device-connect.html">DJI developer documentation</a>: 
+<img alt="M350 E-Port Dev Kit Connection" src="../../images/m350-eport-connect-en.png" /></p>
+</div>
+<p>From this point onwards, the kit will be powered and able to breakout the data connection to the vehicle, but the Raspberry Pi won't be able to get all the power it wants.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.expand", "navigation.path"], "search": "../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.a7c05c9e.min.js"></script>
+      
+    
+  </body>
+</html>

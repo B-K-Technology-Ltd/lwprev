@@ -2,97 +2,107 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://developer.lightwarelidar.com/</loc>
-         <lastmod>2024-05-20</lastmod>
+         <lastmod>2024-05-27</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://developer.lightwarelidar.com/code/landing-moving-platform/</loc>
+         <lastmod>2024-05-27</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://developer.lightwarelidar.com/code/landing-moving-platform/LICENSE/</loc>
+         <lastmod>2024-05-27</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://developer.lightwarelidar.com/landing-moving-platform/</loc>
-         <lastmod>2024-05-20</lastmod>
+         <lastmod>2024-05-27</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://developer.lightwarelidar.com/landing-moving-platform/components/</loc>
-         <lastmod>2024-05-20</lastmod>
+         <lastmod>2024-05-27</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://developer.lightwarelidar.com/landing-moving-platform/conclusion/</loc>
-         <lastmod>2024-05-20</lastmod>
+         <lastmod>2024-05-27</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://developer.lightwarelidar.com/landing-moving-platform/hardware/</loc>
-         <lastmod>2024-05-20</lastmod>
+         <lastmod>2024-05-27</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://developer.lightwarelidar.com/landing-moving-platform/plan/</loc>
-         <lastmod>2024-05-20</lastmod>
+         <lastmod>2024-05-27</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://developer.lightwarelidar.com/landing-moving-platform/software/</loc>
-         <lastmod>2024-05-20</lastmod>
+         <lastmod>2024-05-27</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://developer.lightwarelidar.com/precision-positioning/</loc>
-         <lastmod>2024-05-20</lastmod>
+         <lastmod>2024-05-27</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://developer.lightwarelidar.com/precision-positioning/components/</loc>
-         <lastmod>2024-05-20</lastmod>
+         <lastmod>2024-05-27</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://developer.lightwarelidar.com/precision-positioning/conclusion/</loc>
-         <lastmod>2024-05-20</lastmod>
+         <lastmod>2024-05-27</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://developer.lightwarelidar.com/precision-positioning/hardware/</loc>
-         <lastmod>2024-05-20</lastmod>
+         <lastmod>2024-05-27</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://developer.lightwarelidar.com/precision-positioning/plan/</loc>
-         <lastmod>2024-05-20</lastmod>
+         <lastmod>2024-05-27</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://developer.lightwarelidar.com/precision-positioning/software/</loc>
-         <lastmod>2024-05-20</lastmod>
+         <lastmod>2024-05-27</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://developer.lightwarelidar.com/spoi/</loc>
-         <lastmod>2024-05-20</lastmod>
+         <lastmod>2024-05-27</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://developer.lightwarelidar.com/spoi/components/</loc>
-         <lastmod>2024-05-20</lastmod>
+         <lastmod>2024-05-27</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://developer.lightwarelidar.com/spoi/conclusion/</loc>
-         <lastmod>2024-05-20</lastmod>
+         <lastmod>2024-05-27</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://developer.lightwarelidar.com/spoi/hardware/</loc>
-         <lastmod>2024-05-20</lastmod>
+         <lastmod>2024-05-27</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://developer.lightwarelidar.com/spoi/plan/</loc>
-         <lastmod>2024-05-20</lastmod>
+         <lastmod>2024-05-27</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://developer.lightwarelidar.com/spoi/software/</loc>
-         <lastmod>2024-05-20</lastmod>
+         <lastmod>2024-05-27</lastmod>
          <changefreq>daily</changefreq>
     </url>
 </urlset>

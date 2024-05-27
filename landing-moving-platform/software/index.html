@@ -394,18 +394,9 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#payload-sdk" class="md-nav__link">
+  <a href="#payload-sdk-raspberry-pi" class="md-nav__link">
     <span class="md-ellipsis">
-      Payload SDK
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#raspberry-pi" class="md-nav__link">
-    <span class="md-ellipsis">
-      Raspberry Pi
+      Payload SDK &amp; Raspberry Pi
     </span>
   </a>
   
@@ -888,18 +879,9 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#payload-sdk" class="md-nav__link">
+  <a href="#payload-sdk-raspberry-pi" class="md-nav__link">
     <span class="md-ellipsis">
-      Payload SDK
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#raspberry-pi" class="md-nav__link">
-    <span class="md-ellipsis">
-      Raspberry Pi
+      Payload SDK &amp; Raspberry Pi
     </span>
   </a>
   
@@ -988,9 +970,42 @@
   <h1>Software</h1>
 
 <h2 id="configuration">Configuration</h2>
-<h3 id="payload-sdk">Payload SDK</h3>
-<h3 id="raspberry-pi">Raspberry Pi</h3>
+<p>Before we dive into the code for the application, we need to set up all the baseline components</p>
+<h3 id="payload-sdk-raspberry-pi">Payload SDK &amp; Raspberry Pi</h3>
+<p>DJI covers really well how to get the Raspberry Pi setup, so follow the <a href="https://developer.dji.com/doc/payload-sdk-tutorial/en/quick-start/quick-guide/raspberry-pi.html#software-environment-setup">set up steps here</a></p>
+<p>Once you can run the sample code, we can move to the next step.</p>
+<p>Make sure to configure the Raspberry Pi to connect to your local wifi if available.</p>
+<p>Also, for convenience, make sure you have set up SSH access.</p>
+<p>While you are in the <code>Raspberry Pi Configuration</code> screen (from the top left menu), turn on "I2C"</p>
 <h3 id="lw20c">LW20/C</h3>
+<p>Each LW20/c comes configured with <code>0x66</code> as a I2C address, so we need to assign a new one to each device.</p>
+<p>To do so, you can use the <a href="https://lightwarelidar.com/resources-software/">LightWare Studio App</a>. 
+Download the app, connect the sensor to a FTDI cable (the same type from the kit) and follow the instructions from the <a href="https://lightwarelidar.com/resources-active-manuals-datasheets/">user manual</a>.</p>
+<p>We want to have a dedicated address for each, so let's use <code>0x66</code>, <code>0x67</code>, <code>0x68</code>, <code>0x69</code>.
+You'll notice that in LightWare Studio, the value are in decimal. Simply increase by 1.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Mark the address on each sensor as their positioning on the aircaft will matter for future logics.</p>
+</div>
+<p>Reconnect all the sensors to the pi, and let's confirm that we can see them.</p>
+<p>On the pi, if you don't have them (unlikely scenario), install the i2c tooling:
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>i2c-tools
+</code></pre></div></p>
+<p>Then, verify you can see the sensors using:</p>
+<div class="highlight"><pre><span></span><code>i2cdetect<span class="w"> </span>-y<span class="w"> </span><span class="m">1</span>
+</code></pre></div>
+<p>You should see something like this:</p>
+<div class="highlight"><pre><span></span><code><span class="w">     </span><span class="m">0</span><span class="w">  </span><span class="m">1</span><span class="w">  </span><span class="m">2</span><span class="w">  </span><span class="m">3</span><span class="w">  </span><span class="m">4</span><span class="w">  </span><span class="m">5</span><span class="w">  </span><span class="m">6</span><span class="w">  </span><span class="m">7</span><span class="w">  </span><span class="m">8</span><span class="w">  </span><span class="m">9</span><span class="w">  </span>a<span class="w">  </span>b<span class="w">  </span>c<span class="w">  </span>d<span class="w">  </span>e<span class="w">  </span>f
+<span class="m">00</span>:<span class="w">                         </span>--<span class="w"> </span>--<span class="w"> </span>--<span class="w"> </span>--<span class="w"> </span>--<span class="w"> </span>--<span class="w"> </span>--<span class="w"> </span>--<span class="w"> </span>
+<span class="m">10</span>:<span class="w"> </span>--<span class="w"> </span>--<span class="w"> </span>--<span class="w"> </span>--<span class="w"> </span>--<span class="w"> </span>--<span class="w"> </span>--<span class="w"> </span>--<span class="w"> </span>--<span class="w"> </span>--<span class="w"> </span>--<span class="w"> </span>--<span class="w"> </span>--<span class="w"> </span>--<span class="w"> </span>--<span class="w"> </span>--<span class="w"> </span>
+<span class="m">20</span>:<span class="w"> </span>--<span class="w"> </span>--<span class="w"> </span>--<span class="w"> </span>--<span class="w"> </span>--<span class="w"> </span>--<span class="w"> </span>--<span class="w"> </span>--<span class="w"> </span>--<span class="w"> </span>--<span class="w"> </span>--<span class="w"> </span>--<span class="w"> </span>--<span class="w"> </span>--<span class="w"> </span>--<span class="w"> </span>--<span class="w"> </span>
+<span class="m">30</span>:<span class="w"> </span>--<span class="w"> </span>--<span class="w"> </span>--<span class="w"> </span>--<span class="w"> </span>--<span class="w"> </span>--<span class="w"> </span>--<span class="w"> </span>--<span class="w"> </span>--<span class="w"> </span>--<span class="w"> </span>--<span class="w"> </span>--<span class="w"> </span>--<span class="w"> </span>--<span class="w"> </span>--<span class="w"> </span>--<span class="w"> </span>
+<span class="m">40</span>:<span class="w"> </span>--<span class="w"> </span>--<span class="w"> </span>--<span class="w"> </span>--<span class="w"> </span>--<span class="w"> </span>--<span class="w"> </span>--<span class="w"> </span>--<span class="w"> </span>--<span class="w"> </span>--<span class="w"> </span>--<span class="w"> </span>--<span class="w"> </span>--<span class="w"> </span>--<span class="w"> </span>--<span class="w"> </span>--<span class="w"> </span>
+<span class="m">50</span>:<span class="w"> </span>--<span class="w"> </span>--<span class="w"> </span>--<span class="w"> </span>--<span class="w"> </span>--<span class="w"> </span>--<span class="w"> </span>--<span class="w"> </span>--<span class="w"> </span>--<span class="w"> </span>--<span class="w"> </span>--<span class="w"> </span>--<span class="w"> </span>--<span class="w"> </span>--<span class="w"> </span>--<span class="w"> </span>--<span class="w"> </span>
+<span class="m">60</span>:<span class="w"> </span>--<span class="w"> </span>--<span class="w"> </span>--<span class="w"> </span>--<span class="w"> </span>--<span class="w"> </span>--<span class="w"> </span><span class="m">66</span><span class="w"> </span><span class="m">67</span><span class="w"> </span><span class="m">68</span><span class="w"> </span><span class="m">69</span><span class="w"> </span>--<span class="w"> </span>--<span class="w"> </span>--<span class="w"> </span>--<span class="w"> </span>--<span class="w"> </span>--<span class="w"> </span>
+<span class="m">70</span>:<span class="w"> </span>--<span class="w"> </span>--<span class="w"> </span>--<span class="w"> </span>--<span class="w"> </span>--<span class="w"> </span>--<span class="w"> </span>--<span class="w"> </span>--<span class="w">  </span>
+</code></pre></div>
+<p>You are now ready to dive into the code.</p>
 <h2 id="project-code">Project Code</h2>
 <h3 id="connecting-to-the-aircraft">Connecting to the Aircraft</h3>
 <h3 id="connection-to-the-lw20c">Connection to the LW20/c</h3>

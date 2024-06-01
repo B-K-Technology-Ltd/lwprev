@@ -761,24 +761,16 @@
   <h1>Plan</h1>
 
 <p>In order to land a vehicle on a moving platform, we need to first characterize the situation. </p>
-<p>As we covered before, the deck of the boat will be moving in three axis and three degree of rotation - even of some are less affected.
+<p>As we covered before, the deck of the boat will be moving in six degrees of freedom (three translation, three rotation) - even if some are less affected.
 All this motion will limit the window of opportunity for the vehicle to commit to a landing.</p>
-<p>To understand when the window of opportunity presents itself, we need to be able to observe in real time the plane represented by the deck, identify a moment of least-risk and commit with understanding of the motion capabilities of the vehicle.</p>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>INSERT DIAGRAM HERE</p>
-</div>
+<p>To understand when the window of opportunity presents itself, we need to be able to observe in real time the plane represented by the deck, identify a moment of least-risk and commit with understanding of the motion capabilities of the vehicle and the structural strength of the drone.</p>
+<p><img alt="Plan Diagram" src="../../images/plandiagram.png" /></p>
 <p>The DJI M350 does have sensor packages all around itself, but most aren't accessible to developers.
 Fortunately, the <a href="https://developer.dji.com/payload-sdk/">PayloadSDK</a> allows us to bring our sensors and our computer onboard.
 With these we can also bring our control logic and write a custom landing mode.</p>
-<p>We can also trigger this mode from the ground using the <a href="https://developer.dji.com/mobile-sdk">MobileSDK</a>.</p>
-<p>So we can create an array of our <a href="https://lightwarelidar.com/shop/lw20-c-100-m/">LW20</a> lidar sensor to great an accurate reading of the distance to the ground, recreate the plane it represents, process it on an onboard compute, make our decision and execute the landing using the PSDK.</p>
-<p>We will use custom-made hardware to secure the sensors and the compute onto the drone.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p><img alt="System Diagram" src="../../images/system_diagram_wiring_with_case.png" />
-<center>fig 1 - System Diagram</center></p>
-</div>
+<p>So we can create an array of our <a href="https://lightwarelidar.com/shop/lw20-c-100-m/">LW20</a> lidar sensor to create an accurate reading of the distance to the ground, recreate the plane it represents, process it on an onboard computer, make our decision and execute the landing using the PayloadSDK.</p>
+<p>We will use custom-made hardware to secure the sensors and the computer onto the drone, with off-the-shelves components as to make this all the more accessible.</p>
+<p><img alt="System Diagram" src="../../images/system_diagram_wiring_with_case.png" /></p>
 <p>Now that we have a decent idea of how we can approach the problem, let's go over the components choice in details.</p>
 
 

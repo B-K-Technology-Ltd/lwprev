@@ -451,6 +451,39 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Plane detection logic">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#maintaining-the-application-active-until-triggered-from-the-ground" class="md-nav__link">
+    <span class="md-ellipsis">
+      Maintaining the application active until triggered from the ground.
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#following-the-landing-target" class="md-nav__link">
+    <span class="md-ellipsis">
+      Following the landing target.
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#landing-risk-validation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Landing risk validation.
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
         
           <li class="md-nav__item">
@@ -936,6 +969,39 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Plane detection logic">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#maintaining-the-application-active-until-triggered-from-the-ground" class="md-nav__link">
+    <span class="md-ellipsis">
+      Maintaining the application active until triggered from the ground.
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#following-the-landing-target" class="md-nav__link">
+    <span class="md-ellipsis">
+      Following the landing target.
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#landing-risk-validation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Landing risk validation.
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
         
           <li class="md-nav__item">
@@ -1007,10 +1073,277 @@ You'll notice that in LightWare Studio, the value are in decimal. Simply increas
 </code></pre></div>
 <p>You are now ready to dive into the code.</p>
 <h2 id="project-code">Project Code</h2>
+<p>First of all, all the code for we are going to go over is available <a href="../code/landing-moving-platform">here</a>.</p>
+<p>The code is in itself, functionally simple. We started by writing several classes that will abstract the sensor, the array of them and the vehicle interaction.
+For the vehicle and to remain true to the content set by DJI, we used the same <code>Application</code> class from their <a href="https://github.com/dji-sdk/Payload-SDK/blob/master/samples/sample_c%2B%2B/platform/linux/nvidia_jetson/application/application.hpp">sample code</a>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Remember that this project isn't production ready. If you want to deliver this functionality you'll have to finish parts of the work.</p>
+</div>
 <h3 id="connecting-to-the-aircraft">Connecting to the Aircraft</h3>
+<p>Because the Payload SDK does the work for us, once we are set up with the hardware, the work becomes as simple as this:</p>
+<div class="highlight"><pre><span></span><code><span class="n">Application</span><span class="w"> </span><span class="o">*</span><span class="n">vehicle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">;</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">**</span><span class="n">argv</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Create the vehicle instance to connect</span>
+<span class="w">    </span><span class="c1">// We are reusing the Application object from DJI&#39;s sample for clarity only.</span>
+<span class="w">    </span><span class="n">vehicle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Application</span><span class="p">(</span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="n">argv</span><span class="p">);</span>
+</code></pre></div>
+<p>From this point on, the vehicle object can be used to abstract vehicle functions. </p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The Payload SDK uses functions. These would be accessible in the global space, but structure with objects is a neater way to organize functions.</p>
+</div>
 <h3 id="connection-to-the-lw20c">Connection to the LW20/c</h3>
+<p>Following the logic of abstraction, we are going to create two objects: <code>LW20</code> and <code>SensorArray</code>.</p>
+<p><code>LW20</code> is used to abstract a single sensor. This includes all controls and reads.</p>
+<p><code>SensorArray</code> is specific to this project and abstracts the four sensors in their physical configuration.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>A lot more effort can be put in these abstractions should the need come to expand on the current approach. 
+These classes are great places to contain it.</p>
+</div>
+<p>First, we bring in all the headers needed for future work and then declare the class:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">//</span>
+<span class="c1">// Created by LightWare.</span>
+<span class="c1">// LW20/c Interface</span>
+<span class="c1">//</span>
+
+<span class="cp">#pragma once</span>
+
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdlib.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;unistd.h&gt;</span>
+
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;atomic&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;thread&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;sys/ioctl.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;asm/ioctl.h&gt;</span>
+
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;fcntl.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;string.h&gt;</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">LW20</span><span class="w"> </span><span class="p">{</span>
+</code></pre></div>
+<p>Then we define a <code>ioctl</code> configuration macro. This is necessary because we work on a Raspberry Pi 5 and the wiringPi which handles these variations isn't available.</p>
+<div class="highlight"><pre><span></span><code><span class="cp">#define I2C_SLAVE   0x0703</span>
+</code></pre></div>
+<p>Next, we can implement the public interface which manages the life cycle of the abstraction and protected access to private information:</p>
+<div class="highlight"><pre><span></span><code><span class="k">public</span><span class="o">:</span>
+<span class="w">    </span><span class="n">LW20</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="o">~</span><span class="n">LW20</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">this</span><span class="o">-&gt;</span><span class="n">disconnect</span><span class="p">();</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">connect</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i2cAddress</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">_deviceAddress</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">i2cAddress</span><span class="p">;</span>
+
+<span class="w">        </span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">device</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;/dev/i2c-1&quot;</span><span class="p">;</span><span class="w"> </span><span class="c1">// This may change, wiringPi has a good discovery for this, but it&#39;s not available yet on pi5.</span>
+<span class="w">        </span><span class="n">_fd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">open</span><span class="w"> </span><span class="p">(</span><span class="n">device</span><span class="p">,</span><span class="w"> </span><span class="n">O_RDWR</span><span class="p">);</span>
+
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">_fd</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">-1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">std</span><span class="o">::</span><span class="n">cerr</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;I2C Bus file could not be opened&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">std</span><span class="o">::</span><span class="n">cerr</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;I2C Bus opened on FD: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">_fd</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">ioctl</span><span class="w"> </span><span class="p">(</span><span class="n">_fd</span><span class="p">,</span><span class="w"> </span><span class="n">I2C_SLAVE</span><span class="p">,</span><span class="w"> </span><span class="n">i2cAddress</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="n">std</span><span class="o">::</span><span class="n">cerr</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Unable to select I2C device: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">strerror</span><span class="p">(</span><span class="n">errno</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="w">            </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="n">_threadRunning</span><span class="p">.</span><span class="n">store</span><span class="p">(</span><span class="nb">true</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">memory_order_relaxed</span><span class="p">);</span>
+<span class="w">                </span><span class="n">_runningThread</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="kr">thread</span><span class="p">(</span><span class="o">&amp;</span><span class="n">LW20</span><span class="o">::</span><span class="n">loop</span><span class="p">,</span><span class="w"> </span><span class="k">this</span><span class="p">);</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">disconnect</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">_threadRunning</span><span class="p">.</span><span class="n">store</span><span class="p">(</span><span class="nb">false</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">memory_order_relaxed</span><span class="p">);</span>
+<span class="w">        </span><span class="n">close</span><span class="p">(</span><span class="n">_fd</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">latestDistance</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="k">this</span><span class="o">-&gt;</span><span class="n">_latestDistance</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">memory_order_relaxed</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+</code></pre></div>
+<p>Last, we do the private implementation which covers the internal loop running in a background thread to read the data from the sensor and the protected variables.</p>
+<div class="highlight"><pre><span></span><code><span class="k">private</span><span class="o">:</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">atomic</span><span class="o">&lt;</span><span class="kt">bool</span><span class="o">&gt;</span><span class="w"> </span><span class="n">_threadRunning</span><span class="p">{</span><span class="nb">false</span><span class="p">};</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="kr">thread</span><span class="w"> </span><span class="n">_runningThread</span><span class="p">;</span>
+
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">_deviceAddress</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mh">0x66</span><span class="p">;</span><span class="w"> </span><span class="c1">// default factory value</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">_fd</span><span class="p">;</span>
+
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">atomic</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">_latestDistance</span><span class="p">{</span><span class="mi">0</span><span class="p">};</span><span class="w"> </span><span class="c1">// in cm</span>
+
+<span class="w">    </span><span class="c1">// Loop running in background thread.</span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">loop</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">_threadRunning</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">memory_order_relaxed</span><span class="p">))</span><span class="w">  </span><span class="p">{</span>
+<span class="w">            </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="n">byte</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span>
+<span class="w">            </span><span class="kt">int</span><span class="w"> </span><span class="n">res</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">read</span><span class="p">(</span><span class="n">_fd</span><span class="p">,</span><span class="w"> </span><span class="n">byte</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">);</span>
+
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">res</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">-1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;I2C Device with address &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">_deviceAddress</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; was not available&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="w">            </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="kt">int</span><span class="w"> </span><span class="n">distanceRead</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">byte</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="mi">8</span><span class="p">)</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">byte</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span>
+<span class="w">                </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;[&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">_deviceAddress</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;] Distance: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">distanceRead</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;cm&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+
+<span class="w">                </span><span class="n">_latestDistance</span><span class="p">.</span><span class="n">store</span><span class="p">(</span><span class="n">distanceRead</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">memory_order_relaxed</span><span class="p">);</span>
+<span class="w">            </span><span class="p">}</span>
+
+<span class="w">            </span><span class="n">usleep</span><span class="p">(</span><span class="mi">250</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">};</span>
+</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The way this class is set, the address is defined during the connect function. 
+You could just as easily set it at allocation and have a parameter-less connect function.
+This is just a matter of preference.</p>
+</div>
+<p>Now that we have a single sensor imlementation sorted, we need to move onto the <code>SensorArray</code></p>
+<p>Again, this object is a convenience luxury which makes the main business logic really light and abstracted behind trusted classes.</p>
+<p>As before, we start with the header call we will need and class declaration.</p>
+<div class="highlight"><pre><span></span><code><span class="c1">//</span>
+<span class="c1">// Created by LightWare.</span>
+<span class="c1">// Software representation of the LW20/c quad sensor array for platform detection</span>
+<span class="c1">//</span>
+
+<span class="cp">#pragma once</span>
+
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;LW20.h&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;limits&gt;</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">SensorArray</span><span class="w"> </span><span class="p">{</span>
+</code></pre></div>
+<p>The public interface handles the life cycle of the sensors:</p>
+<div class="highlight"><pre><span></span><code><span class="k">public</span><span class="o">:</span>
+<span class="w">    </span><span class="n">SensorArray</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">this</span><span class="o">-&gt;</span><span class="n">_sensor1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">LW20</span><span class="p">();</span>
+<span class="w">        </span><span class="k">this</span><span class="o">-&gt;</span><span class="n">_sensor2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">LW20</span><span class="p">();</span>
+<span class="w">        </span><span class="k">this</span><span class="o">-&gt;</span><span class="n">_sensor3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">LW20</span><span class="p">();</span>
+<span class="w">        </span><span class="k">this</span><span class="o">-&gt;</span><span class="n">_sensor4</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">LW20</span><span class="p">();</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="o">~</span><span class="n">SensorArray</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">delete</span><span class="w"> </span><span class="k">this</span><span class="o">-&gt;</span><span class="n">_sensor1</span><span class="p">;</span>
+<span class="w">        </span><span class="k">delete</span><span class="w"> </span><span class="k">this</span><span class="o">-&gt;</span><span class="n">_sensor2</span><span class="p">;</span>
+<span class="w">        </span><span class="k">delete</span><span class="w"> </span><span class="k">this</span><span class="o">-&gt;</span><span class="n">_sensor3</span><span class="p">;</span>
+<span class="w">        </span><span class="k">delete</span><span class="w"> </span><span class="k">this</span><span class="o">-&gt;</span><span class="n">_sensor4</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// Connects the entire array and start receiving distances</span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">connect</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">this</span><span class="o">-&gt;</span><span class="n">_sensor1</span><span class="o">-&gt;</span><span class="n">connect</span><span class="p">(</span><span class="mh">0x66</span><span class="p">);</span>
+<span class="w">        </span><span class="k">this</span><span class="o">-&gt;</span><span class="n">_sensor2</span><span class="o">-&gt;</span><span class="n">connect</span><span class="p">(</span><span class="mh">0x67</span><span class="p">);</span>
+<span class="w">        </span><span class="k">this</span><span class="o">-&gt;</span><span class="n">_sensor3</span><span class="o">-&gt;</span><span class="n">connect</span><span class="p">(</span><span class="mh">0x68</span><span class="p">);</span>
+<span class="w">        </span><span class="k">this</span><span class="o">-&gt;</span><span class="n">_sensor4</span><span class="o">-&gt;</span><span class="n">connect</span><span class="p">(</span><span class="mh">0x69</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// Average distance in cm</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">averageDistance</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">sensor1LastRead</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="o">-&gt;</span><span class="n">_sensor1</span><span class="o">-&gt;</span><span class="n">latestDistance</span><span class="p">();</span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">sensor2LastRead</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="o">-&gt;</span><span class="n">_sensor2</span><span class="o">-&gt;</span><span class="n">latestDistance</span><span class="p">();</span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">sensor3LastRead</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="o">-&gt;</span><span class="n">_sensor3</span><span class="o">-&gt;</span><span class="n">latestDistance</span><span class="p">();</span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">sensor4LastRead</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="o">-&gt;</span><span class="n">_sensor4</span><span class="o">-&gt;</span><span class="n">latestDistance</span><span class="p">();</span>
+
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="p">(</span><span class="n">sensor1LastRead</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">sensor2LastRead</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">sensor3LastRead</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">sensor4LastRead</span><span class="p">)</span><span class="o">/</span><span class="mi">4</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// Return the maximum differences between the closest and the furthest away hit</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">maxDelta</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">sensor1LastRead</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="o">-&gt;</span><span class="n">_sensor1</span><span class="o">-&gt;</span><span class="n">latestDistance</span><span class="p">();</span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">sensor2LastRead</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="o">-&gt;</span><span class="n">_sensor2</span><span class="o">-&gt;</span><span class="n">latestDistance</span><span class="p">();</span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">sensor3LastRead</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="o">-&gt;</span><span class="n">_sensor3</span><span class="o">-&gt;</span><span class="n">latestDistance</span><span class="p">();</span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">sensor4LastRead</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="o">-&gt;</span><span class="n">_sensor4</span><span class="o">-&gt;</span><span class="n">latestDistance</span><span class="p">();</span>
+
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">distances</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="n">sensor1LastRead</span><span class="p">,</span><span class="w"> </span><span class="n">sensor2LastRead</span><span class="p">,</span><span class="w"> </span><span class="n">sensor3LastRead</span><span class="p">,</span><span class="w"> </span><span class="n">sensor4LastRead</span><span class="p">};</span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">lowest</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">numeric_limits</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;::</span><span class="n">max</span><span class="p">();</span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">highest</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">numeric_limits</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;::</span><span class="n">min</span><span class="p">();</span>
+
+<span class="w">        </span><span class="k">for</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">size</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">if</span><span class="p">(</span><span class="n">distances</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">lowest</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="n">lowest</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">distances</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">            </span><span class="k">if</span><span class="p">(</span><span class="n">distances</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">highest</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="n">highest</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">distances</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">highest</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">lowest</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+</code></pre></div>
+<p>Private interfaces aren't doing much except holding onto the sensor pointers.</p>
+<div class="highlight"><pre><span></span><code><span class="k">private</span><span class="o">:</span>
+<span class="w">    </span><span class="n">LW20</span><span class="w"> </span><span class="o">*</span><span class="n">_sensor1</span><span class="p">;</span>
+<span class="w">    </span><span class="n">LW20</span><span class="w"> </span><span class="o">*</span><span class="n">_sensor2</span><span class="p">;</span>
+<span class="w">    </span><span class="n">LW20</span><span class="w"> </span><span class="o">*</span><span class="n">_sensor3</span><span class="p">;</span>
+<span class="w">    </span><span class="n">LW20</span><span class="w"> </span><span class="o">*</span><span class="n">_sensor4</span><span class="p">;</span>
+
+<span class="p">};</span>
+</code></pre></div>
+<p>Now that we have an abstraction for the vehicle and the sensor array, it's time to tie it all up together.</p>
 <h3 id="plane-detection-logic">Plane detection logic</h3>
+<p>As the purpose of this tutorial is to cover how to leverage the sensors, we are taking the most simplistic approach to solving this problem. 
+This means there is obviously a lot of room for improvements towards delivering a resilient and production ready solution.
+We will cover a few next steps should you want to take it further after we covered the simple solution we offer.</p>
+<p>Back to the <code>main.cpp</code> file in the <code>main</code> function, after we created the abstraction for the vehicle, we create the abstraction for the sensor array and connect it.</p>
+<p>After this, we assume we are in checking to land logic. We loop until the condition met is hit, then we exit the loop and trigger the landing:</p>
+<div class="highlight"><pre><span></span><code><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">**</span><span class="n">argv</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Create the vehicle instance to connect</span>
+<span class="w">    </span><span class="c1">// We are reusing the Application object from DJI&#39;s sample for clarity only.</span>
+<span class="w">    </span><span class="n">vehicle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Application</span><span class="p">(</span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="n">argv</span><span class="p">);</span>
+
+<span class="w">    </span><span class="n">sensorArray</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">SensorArray</span><span class="p">();</span>
+<span class="w">    </span><span class="n">sensorArray</span><span class="o">-&gt;</span><span class="n">connect</span><span class="p">();</span>
+
+<span class="w">    </span><span class="c1">// Check loop</span>
+<span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">checkingToLand</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">flatEnough</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span><span class="w"> </span><span class="c1">// in cm; 10cm -&gt; ~15° plane</span>
+
+<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">checkingToLand</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">maxDelta</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sensorArray</span><span class="o">-&gt;</span><span class="n">maxDelta</span><span class="p">();</span>
+
+<span class="w">        </span><span class="c1">// Condition to determine a landing opportunity.</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">maxDelta</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">flatEnough</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">maxDelta</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">checkingToLand</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
+<span class="w">            </span><span class="k">break</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+</code></pre></div>
+<p>As you can see this is incredibly simple in this form so here are extra next steps for your consideration:</p>
+<h4 id="maintaining-the-application-active-until-triggered-from-the-ground">Maintaining the application active until triggered from the ground.</h4>
+<p>This current code will enter in checking to land logic as soon as it's launched. It's not something that's practical in the real world. </p>
+<p>What you'd want is for this app to launch with the life cycle of the vehicle and the logic entering once a pilot, operator or logic triggers it.
+We can't even cover all the way to handle these three scenarios, but assuming you have a pilot and a ground application, you can leverage <a href="https://developer.dji.com/doc/payload-sdk-api-reference/en/practice/mop-channel.html">MOP</a>.
+MOP is a feature of the MobileSDK and PayloadSDK which allows a MobileSDK application to send custom commands to a PayloadSDK application.
+MOP has multiple names in the DJI world. It's also refered to SDK Interconnection and <a href="https://developer.dji.com/api-reference-v5/android-api/Components/IPipelineManager/IPipelineManager.html">Pipeline</a>
+ on the Android MSDK.</p>
+<p>Regardless, they will allow you to build a button on the UI of a MobileSDK app that can trigger this code to enter 'checking to land' logic.</p>
+<h4 id="following-the-landing-target">Following the landing target.</h4>
+<p>This is another element we skipped over because there is so many ways to go over it.</p>
+<p>You could use a dedicated camera sensor, or the <a href="https://developer.dji.com/doc/payload-sdk-tutorial/en/function-set/advanced-function/camera-video-stream-transmission.html">existing PayloadSDK stream</a>.</p>
+<p>Regardless, you'll likely reuse the triggering we covered before to enter 'follow the target' logic which itself could trigger the 'check to land' logic itself.</p>
+<h4 id="landing-risk-validation">Landing risk validation.</h4>
+<p>The logic we implemented assumes that committing to a landing from <em>any</em> height after reading a plane of about 15° is safe. Big assumption.</p>
+<p>In a more practical sense, the plane validation of the ground would depend on the characteristic of your moving platform.</p>
+<p>For instance, landing on a ground vehicle on a road is likely to have a much more stable plane (smaller range, slower variation).
+On the other hand, landing on a sea ship will dramatically vary with the weather condition, the type of ship and the operation context. 
+If you land on an inspection boat after an off-shore wind turbine, you're likely looking at a fairly stable motion on all aspect than if you're landing on a military ship at sea state 4.</p>
 <h3 id="landing-routine">Landing routine</h3>
+<p>Finally, now that the logic is ready to commit, landing is a single function call behind an abstraction:</p>
+<div class="highlight"><pre><span></span><code><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">checkingToLand</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// We exited the loop flagging we aren&#39;t checking to land, so we are landing.</span>
+<span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Landing...&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+
+<span class="w">        </span><span class="n">vehicle</span><span class="o">-&gt;</span><span class="n">land</span><span class="p">();</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
 
 
 

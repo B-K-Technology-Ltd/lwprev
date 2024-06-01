@@ -769,23 +769,20 @@
 
 <h1 id="m350-landing-on-a-moving-platform">M350 Landing on a Moving Platform</h1>
 <p>In this scenario, we are going to walk through the steps to add a capability to the DJI M350 which isn't present on the vehicle by default: <strong>The ability to land on a moving platform</strong>.</p>
-<p>Such platform can be a ground vehicle or a marine vehicle. 
-We will choose the second context, because its application is more grounded. 
-It's not practical to stop a vessel for a drone to land on it, so it is up to the drone to be able to do so.</p>
-<p>There are many reasons why you would want a drone to land on a moving vessel, none of which are particularly interesting for what we are trying to achieve here, but let's assume we are in the context of delivery.</p>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>Add a diagram of what we are talking about.</p>
-</div>
+<p>Such platform can be a ground, aerial or a marine vehicle. 
+We will focus on the marine context to set the scene, because its application is more grounded. 
+Even a stopped vessel will still experience movements, so it is up to the drone to be able to handle it.</p>
+<p>Specifically, let's assume we are in the context of an inspection.</p>
+<p><img alt="Summary Diagram" src="../images/summary_diagram.png" /></p>
 <p>As you can see, the boat will be subjected to the movement of the water. 
-This will force its deck to be moving along three axis.
-For a safe landing, an undamaged package and a reusable drone, we need to achieve a clean landing.</p>
-<p>This means we need to understand the condition of the boat, take a decision and execute the landing.</p>
+This will force its deck to be moving along three translation and three rotation axis.
+For a safe landing, an undamaged and reusable drone, we need to achieve a clean landing.</p>
+<p>This means we need to understand the condition of the boat landing pad, take a decision and execute the landing.</p>
 <p>We will go through all the details in the plan part of this tutorial.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>As the scope of this tutorial is to focus on how to use our products, we will skim through the other components and only cover the extent necessary for the whole solution to be reproducible.
-We will provide insight on how to explore this further and productize this should this be something you would like to pursue.</p>
+<p>As the scope of this tutorial is to focus on how to use our products, we will skim through the other components and only cover the extent necessary for the whole solution to be reproducible and extendable.
+We will provide insight on how to explore this further and productize it, should this be something you would like to pursue.</p>
 </div>
 
 

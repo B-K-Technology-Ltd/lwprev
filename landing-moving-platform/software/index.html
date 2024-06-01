@@ -447,17 +447,17 @@
           <li class="md-nav__item">
   <a href="#plane-detection-logic" class="md-nav__link">
     <span class="md-ellipsis">
-      Plane detection logic
+      Plane Detection Logic
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Plane detection logic">
+    <nav class="md-nav" aria-label="Plane Detection Logic">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#maintaining-the-application-active-until-triggered-from-the-ground" class="md-nav__link">
     <span class="md-ellipsis">
-      Maintaining the application active until triggered from the ground.
+      Maintaining the Application Active Until Triggered from the Ground.
     </span>
   </a>
   
@@ -466,7 +466,7 @@
           <li class="md-nav__item">
   <a href="#following-the-landing-target" class="md-nav__link">
     <span class="md-ellipsis">
-      Following the landing target.
+      Following the Landing Target.
     </span>
   </a>
   
@@ -475,7 +475,7 @@
           <li class="md-nav__item">
   <a href="#landing-risk-validation" class="md-nav__link">
     <span class="md-ellipsis">
-      Landing risk validation.
+      Landing Risk Validation.
     </span>
   </a>
   
@@ -489,7 +489,7 @@
           <li class="md-nav__item">
   <a href="#landing-routine" class="md-nav__link">
     <span class="md-ellipsis">
-      Landing routine
+      Landing Routine
     </span>
   </a>
   
@@ -965,17 +965,17 @@
           <li class="md-nav__item">
   <a href="#plane-detection-logic" class="md-nav__link">
     <span class="md-ellipsis">
-      Plane detection logic
+      Plane Detection Logic
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Plane detection logic">
+    <nav class="md-nav" aria-label="Plane Detection Logic">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#maintaining-the-application-active-until-triggered-from-the-ground" class="md-nav__link">
     <span class="md-ellipsis">
-      Maintaining the application active until triggered from the ground.
+      Maintaining the Application Active Until Triggered from the Ground.
     </span>
   </a>
   
@@ -984,7 +984,7 @@
           <li class="md-nav__item">
   <a href="#following-the-landing-target" class="md-nav__link">
     <span class="md-ellipsis">
-      Following the landing target.
+      Following the Landing Target.
     </span>
   </a>
   
@@ -993,7 +993,7 @@
           <li class="md-nav__item">
   <a href="#landing-risk-validation" class="md-nav__link">
     <span class="md-ellipsis">
-      Landing risk validation.
+      Landing Risk Validation.
     </span>
   </a>
   
@@ -1007,7 +1007,7 @@
           <li class="md-nav__item">
   <a href="#landing-routine" class="md-nav__link">
     <span class="md-ellipsis">
-      Landing routine
+      Landing Routine
     </span>
   </a>
   
@@ -1073,7 +1073,10 @@ You'll notice that in LightWare Studio, the value are in decimal. Simply increas
 </code></pre></div>
 <p>You are now ready to dive into the code.</p>
 <h2 id="project-code">Project Code</h2>
-<p>First of all, all the code for we are going to go over is available <a href="../code/landing-moving-platform">here</a>.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>All the code for we are going to go over is available <a href="https://github.com/B-K-Technology-Ltd/lightware-psdk-sample">here</a>.</p>
+</div>
 <p>The code is in itself, functionally simple. We started by writing several classes that will abstract the sensor, the array of them and the vehicle interaction.
 For the vehicle and to remain true to the content set by DJI, we used the same <code>Application</code> class from their <a href="https://github.com/dji-sdk/Payload-SDK/blob/master/samples/sample_c%2B%2B/platform/linux/nvidia_jetson/application/application.hpp">sample code</a>.</p>
 <div class="admonition note">
@@ -1287,7 +1290,7 @@ This is just a matter of preference.</p>
 <span class="p">};</span>
 </code></pre></div>
 <p>Now that we have an abstraction for the vehicle and the sensor array, it's time to tie it all up together.</p>
-<h3 id="plane-detection-logic">Plane detection logic</h3>
+<h3 id="plane-detection-logic">Plane Detection Logic</h3>
 <p>As the purpose of this tutorial is to cover how to leverage the sensors, we are taking the most simplistic approach to solving this problem. 
 This means there is obviously a lot of room for improvements towards delivering a resilient and production ready solution.
 We will cover a few next steps should you want to take it further after we covered the simple solution we offer.</p>
@@ -1316,7 +1319,7 @@ We will cover a few next steps should you want to take it further after we cover
 <span class="w">    </span><span class="p">}</span>
 </code></pre></div>
 <p>As you can see this is incredibly simple in this form so here are extra next steps for your consideration:</p>
-<h4 id="maintaining-the-application-active-until-triggered-from-the-ground">Maintaining the application active until triggered from the ground.</h4>
+<h4 id="maintaining-the-application-active-until-triggered-from-the-ground">Maintaining the Application Active Until Triggered from the Ground.</h4>
 <p>This current code will enter in checking to land logic as soon as it's launched. It's not something that's practical in the real world. </p>
 <p>What you'd want is for this app to launch with the life cycle of the vehicle and the logic entering once a pilot, operator or logic triggers it.
 We can't even cover all the way to handle these three scenarios, but assuming you have a pilot and a ground application, you can leverage <a href="https://developer.dji.com/doc/payload-sdk-api-reference/en/practice/mop-channel.html">MOP</a>.
@@ -1324,17 +1327,17 @@ MOP is a feature of the MobileSDK and PayloadSDK which allows a MobileSDK applic
 MOP has multiple names in the DJI world. It's also refered to SDK Interconnection and <a href="https://developer.dji.com/api-reference-v5/android-api/Components/IPipelineManager/IPipelineManager.html">Pipeline</a>
  on the Android MSDK.</p>
 <p>Regardless, they will allow you to build a button on the UI of a MobileSDK app that can trigger this code to enter 'checking to land' logic.</p>
-<h4 id="following-the-landing-target">Following the landing target.</h4>
+<h4 id="following-the-landing-target">Following the Landing Target.</h4>
 <p>This is another element we skipped over because there is so many ways to go over it.</p>
 <p>You could use a dedicated camera sensor, or the <a href="https://developer.dji.com/doc/payload-sdk-tutorial/en/function-set/advanced-function/camera-video-stream-transmission.html">existing PayloadSDK stream</a>.</p>
 <p>Regardless, you'll likely reuse the triggering we covered before to enter 'follow the target' logic which itself could trigger the 'check to land' logic itself.</p>
-<h4 id="landing-risk-validation">Landing risk validation.</h4>
+<h4 id="landing-risk-validation">Landing Risk Validation.</h4>
 <p>The logic we implemented assumes that committing to a landing from <em>any</em> height after reading a plane of about 15° is safe. Big assumption.</p>
 <p>In a more practical sense, the plane validation of the ground would depend on the characteristic of your moving platform.</p>
 <p>For instance, landing on a ground vehicle on a road is likely to have a much more stable plane (smaller range, slower variation).
 On the other hand, landing on a sea ship will dramatically vary with the weather condition, the type of ship and the operation context. 
 If you land on an inspection boat after an off-shore wind turbine, you're likely looking at a fairly stable motion on all aspect than if you're landing on a military ship at sea state 4.</p>
-<h3 id="landing-routine">Landing routine</h3>
+<h3 id="landing-routine">Landing Routine</h3>
 <p>Finally, now that the logic is ready to commit, landing is a single function call behind an abstraction:</p>
 <div class="highlight"><pre><span></span><code><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">checkingToLand</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">        </span><span class="c1">// We exited the loop flagging we aren&#39;t checking to land, so we are landing.</span>

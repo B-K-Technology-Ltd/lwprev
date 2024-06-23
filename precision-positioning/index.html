@@ -72,7 +72,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#m350-landing-on-a-moving-platform" class="md-skip">
+        <a href="#precision-positioning" class="md-skip">
           Skip to content
         </a>
       
@@ -205,7 +205,7 @@
         
   
   <span class="md-ellipsis">
-    Welcome to LightWare's Developer Portal
+    Home
   </span>
   
 
@@ -437,17 +437,6 @@
         
       
       
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    Summary
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -457,34 +446,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#plan" class="md-nav__link">
-    <span class="md-ellipsis">
-      Plan
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
       
     </li>
   
@@ -793,23 +754,6 @@
     
   
   
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#plan" class="md-nav__link">
-    <span class="md-ellipsis">
-      Plan
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
 </nav>
                   </div>
                 </div>
@@ -823,16 +767,21 @@
                   
 
 
-<h1 id="m350-landing-on-a-moving-platform">M350 Landing on a Moving Platform</h1>
-<p>In this scenario, we are going to walk through the steps to add a capability to the DJI M350 which isn't present on the vehicle by default: <strong>The ability to land on a moving platform</strong>.</p>
-<p>The scope of this tutorial is to focus on how to use our products, so we will skim through the other components and only cover the extent necessary for the whole solution to be reproduceable.</p>
-<h2 id="plan">Plan</h2>
-<p>In order to land a vehicle on a moving platform, we need to first characterize the situation. In this case, moving platform implies a vehicle which landing platform will be affected by it motion. 
-There is obviously the translational effect, but also the three-dimensional effect on the plate which will limit the window of opportunity for the vehicle to commit to a landing.</p>
-<p>In the case of boat, the deck of boat will tilt in two axis in a way that could jeopardize the vehicle's safety.</p>
-<p>To understand when the window of opportunity presents itself, we need to be able to observe in real time the plane represented by the deck and identify a moment of least-risk and commit with understanding of the motion capabilities of the vehicle.</p>
-<p>INSERT DIAGRAM HERE</p>
-<p>Now that we have a decent idea of how we will approach this problem, we can start planning for the components at play and their roles.</p>
+<h1 id="precision-positioning">Precision Positioning</h1>
+<p>In this scenario, we are going to use a <a href="https://lightwarelidar.com/shop/sf30-d-200-m/">SF30/D</a> lidar sensor to build a control logic that will maintain the M350 to a distance from an obstacle.</p>
+<p><img alt="precision-positioning-summary" src="../images/precision-positioning-summary.png" /></p>
+<p>We will use frontal, but being able to precisely position yourself relative to objects is a particularly important feature when navigating urban environment where GPS signal - even with RTK - may not be suitable.
+This is also why, you can easily adapt this project to include more than one sensor for a more accurate positioning across multiple dimensions.</p>
+<p>For instance, if you were to build a power washing drone out of the DJI FlyCart 30, you could have a sensor pointing down for vertical precision and forward for a frontal precision.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Because of the nature of this stack, there are three dimensions where this scenario can easily be adapted:</p>
+<ol>
+<li><strong>Distance vector:</strong> We are going to use distance forward to make this more interesting, but you could place the sensor facing down for altitude precise positioning</li>
+<li><strong>Sensor:</strong> We are using the SF30/D for demonstration purposes. Because of its long range (200 meters - 656 feet), it's great for altitude precise positioning, but you could use any other sensor we have</li>
+<li><strong>Control logic:</strong> We are going to keep it simple in the software side, but you could bake into any control loop the sensor information to do distance follow, course correction, etc.</li>
+</ol>
+</div>
 
 
 

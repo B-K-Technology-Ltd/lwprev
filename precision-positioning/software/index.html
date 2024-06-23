@@ -72,7 +72,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#software" class="md-skip">
+        <a href="#configuration" class="md-skip">
           Skip to content
         </a>
       
@@ -205,7 +205,7 @@
         
   
   <span class="md-ellipsis">
-    Welcome to LightWare's Developer Portal
+    Home
   </span>
   
 
@@ -554,11 +554,92 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#software" class="md-nav__link">
+  <a href="#configuration" class="md-nav__link">
     <span class="md-ellipsis">
-      Software
+      Configuration
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="Configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#payload-sdk-raspberry-pi" class="md-nav__link">
+    <span class="md-ellipsis">
+      Payload SDK &amp; Raspberry Pi
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#project-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      Project Code
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Project Code">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#connecting-to-the-aircraft" class="md-nav__link">
+    <span class="md-ellipsis">
+      Connecting to the Aircraft
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#connection-to-the-sf30d" class="md-nav__link">
+    <span class="md-ellipsis">
+      Connection to the SF30/D
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#distance-detection-logic" class="md-nav__link">
+    <span class="md-ellipsis">
+      Distance Detection Logic
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Distance Detection Logic">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#application-lifecycle-control-from-the-ground" class="md-nav__link">
+    <span class="md-ellipsis">
+      Application lifecycle control from the Ground.
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#expanding-the-context-of-operation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Expanding the Context of Operation
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -794,11 +875,92 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#software" class="md-nav__link">
+  <a href="#configuration" class="md-nav__link">
     <span class="md-ellipsis">
-      Software
+      Configuration
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="Configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#payload-sdk-raspberry-pi" class="md-nav__link">
+    <span class="md-ellipsis">
+      Payload SDK &amp; Raspberry Pi
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#project-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      Project Code
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Project Code">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#connecting-to-the-aircraft" class="md-nav__link">
+    <span class="md-ellipsis">
+      Connecting to the Aircraft
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#connection-to-the-sf30d" class="md-nav__link">
+    <span class="md-ellipsis">
+      Connection to the SF30/D
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#distance-detection-logic" class="md-nav__link">
+    <span class="md-ellipsis">
+      Distance Detection Logic
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Distance Detection Logic">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#application-lifecycle-control-from-the-ground" class="md-nav__link">
+    <span class="md-ellipsis">
+      Application lifecycle control from the Ground.
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#expanding-the-context-of-operation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Expanding the Context of Operation
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -819,7 +981,217 @@
 
   <h1>Software</h1>
 
-<h2 id="software">Software</h2>
+<h2 id="configuration">Configuration</h2>
+<p>If you've gone through the landing on a moving platform example, you will recognize a lot of the steps here as they are quite similar, but we provide the comprehensive content here as the software part from the landing example isn't a complete foundation for this one.</p>
+<p>So, before we dive into the code for the application, we need to set up all the baseline components</p>
+<h3 id="payload-sdk-raspberry-pi">Payload SDK &amp; Raspberry Pi</h3>
+<p>DJI covers really well how to get the Raspberry Pi setup, so follow the <a href="https://developer.dji.com/doc/payload-sdk-tutorial/en/quick-start/quick-guide/raspberry-pi.html#software-environment-setup">set up steps here</a></p>
+<p>Once you can run the sample code, we can move to the next step.</p>
+<p>Make sure to configure the Raspberry Pi to connect to your local Wi-Fi if available.</p>
+<p>Also, for convenience, make sure you have set up SSH access.</p>
+<p>You are now ready to dive into the code.</p>
+<h2 id="project-code">Project Code</h2>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>All the code for we are going to go over is available <a href="https://github.com/B-K-Technology-Ltd/lightware-psdk-sample">here</a>.</p>
+</div>
+<p>The code is in itself, functionally simple. We started by writing several classes that will abstract the sensor, the array of them and the vehicle interaction.
+For the vehicle and to remain true to the content set by DJI, we used the same <code>Application</code> class from their <a href="https://github.com/dji-sdk/Payload-SDK/blob/master/samples/sample_c%2B%2B/platform/linux/nvidia_jetson/application/application.hpp">sample code</a>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Remember that this project isn't production ready. If you want to deliver this functionality you'll have to polish parts of the work.</p>
+</div>
+<h3 id="connecting-to-the-aircraft">Connecting to the Aircraft</h3>
+<p>Because the Payload SDK does the work for us, once we are set up with the hardware, the work becomes as simple as this:</p>
+<div class="highlight"><pre><span></span><code><span class="n">Application</span><span class="w"> </span><span class="o">*</span><span class="n">vehicle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">;</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">**</span><span class="n">argv</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Create the vehicle instance to connect</span>
+<span class="w">    </span><span class="c1">// We are reusing the Application object from DJI&#39;s sample for clarity only.</span>
+<span class="w">    </span><span class="n">vehicle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Application</span><span class="p">(</span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="n">argv</span><span class="p">);</span>
+</code></pre></div>
+<p>From this point on, the vehicle object can be used to abstract vehicle functions. </p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The Payload SDK uses functions. These would be accessible in the global space, but structure with objects is a neater way to organize functions.</p>
+</div>
+<h3 id="connection-to-the-sf30d">Connection to the SF30/D</h3>
+<p>Following the logic of abstraction, we are going to create one object: <code>SF30D</code>.</p>
+<p><code>SF30D</code> is used to abstract a single sensor. This includes all controls and reads.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>A lot more effort can be put in these abstractions should the need come to expand on the current approach. 
+This class is a great place to contain it.</p>
+</div>
+<p>First, we bring in all the headers needed for future work and then declare the class:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">//</span>
+<span class="c1">// Created by LightWare.</span>
+<span class="c1">// SF30/D Interface</span>
+<span class="c1">//</span>
+
+<span class="cp">#pragma once</span>
+
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdlib.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;unistd.h&gt;</span>
+
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;atomic&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;thread&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;sys/ioctl.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;asm/ioctl.h&gt;</span>
+
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;fcntl.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;string.h&gt;</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">SF30D</span><span class="w"> </span><span class="p">{</span>
+</code></pre></div>
+<p>Next, we can implement the public interface which manages the life cycle of the abstraction and protected access to private information:</p>
+<div class="highlight"><pre><span></span><code><span class="k">public</span><span class="o">:</span>
+<span class="w">    </span><span class="n">SF30D</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="o">~</span><span class="n">SF30D</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">this</span><span class="o">-&gt;</span><span class="n">disconnect</span><span class="p">();</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">connect</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">_fd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">open</span><span class="w"> </span><span class="p">(</span><span class="n">_device</span><span class="p">,</span><span class="w"> </span><span class="n">O_RDWR</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">O_NOCTTY</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">O_SYNC</span><span class="p">);</span>
+
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">_fd</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">-1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">std</span><span class="o">::</span><span class="n">cerr</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;USB device could not be opened&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">std</span><span class="o">::</span><span class="n">cerr</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;USB device opened on FD: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">_fd</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+
+<span class="w">            </span><span class="n">_threadRunning</span><span class="p">.</span><span class="n">store</span><span class="p">(</span><span class="nb">true</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">memory_order_relaxed</span><span class="p">);</span>
+<span class="w">            </span><span class="n">_runningThread</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="kr">thread</span><span class="p">(</span><span class="o">&amp;</span><span class="n">SF30D</span><span class="o">::</span><span class="n">loop</span><span class="p">,</span><span class="w"> </span><span class="k">this</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">disconnect</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">_threadRunning</span><span class="p">.</span><span class="n">store</span><span class="p">(</span><span class="nb">false</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">memory_order_relaxed</span><span class="p">);</span>
+<span class="w">        </span><span class="n">close</span><span class="p">(</span><span class="n">_fd</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">latestDistance</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="k">this</span><span class="o">-&gt;</span><span class="n">_latestDistance</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">memory_order_relaxed</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+</code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>If you've gone through the LW20 sample before, pay attention to the return type for distance which are now <code>float</code></p>
+</div>
+<p>Last, we do the private implementation which covers the internal loop running in a background thread to read the data from the sensor and the protected variables.</p>
+<div class="highlight"><pre><span></span><code><span class="k">private</span><span class="o">:</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">atomic</span><span class="o">&lt;</span><span class="kt">bool</span><span class="o">&gt;</span><span class="w"> </span><span class="n">_threadRunning</span><span class="p">{</span><span class="nb">false</span><span class="p">};</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="kr">thread</span><span class="w"> </span><span class="n">_runningThread</span><span class="p">;</span>
+
+<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">_device</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;/dev/ttyACM0&quot;</span><span class="p">;</span><span class="w"> </span><span class="c1">// To figure this out, plug the device on the Pi then immediately run the `dmesg` command to see which device was assigned.</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">_fd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">-1</span><span class="p">;</span>
+
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">atomic</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span><span class="w"> </span><span class="n">_latestDistance</span><span class="p">{</span><span class="mf">0.0</span><span class="p">};</span><span class="w"> </span><span class="c1">// in m</span>
+
+<span class="w">    </span><span class="kt">int32_t</span><span class="w"> </span><span class="nf">readData</span><span class="p">(</span><span class="kt">uint8_t</span><span class="w"> </span><span class="o">*</span><span class="n">Buffer</span><span class="p">,</span><span class="w"> </span><span class="kt">int32_t</span><span class="w"> </span><span class="n">BufferSize</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">_fd</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Can&#39;t read from null coms&quot;</span><span class="p">;</span>
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="mi">-1</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="n">errno</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">readBytes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">read</span><span class="p">(</span><span class="n">_fd</span><span class="p">,</span><span class="w"> </span><span class="n">Buffer</span><span class="p">,</span><span class="w"> </span><span class="n">BufferSize</span><span class="p">);</span>
+
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">readBytes</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="nf">getNextReading</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">char</span><span class="w"> </span><span class="n">line</span><span class="p">[</span><span class="mi">64</span><span class="p">];</span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">lineSize</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+
+<span class="w">        </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="nb">true</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="kt">char</span><span class="w"> </span><span class="n">recvData</span><span class="p">;</span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="k">this</span><span class="o">-&gt;</span><span class="n">readData</span><span class="p">((</span><span class="kt">uint8_t</span><span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">recvData</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">recvData</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="sc">&#39;\n&#39;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="n">line</span><span class="p">[</span><span class="n">lineSize</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">                    </span><span class="kt">float</span><span class="w"> </span><span class="n">distance</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">atof</span><span class="p">(</span><span class="n">line</span><span class="p">);</span>
+<span class="w">                    </span><span class="k">return</span><span class="w"> </span><span class="n">distance</span><span class="p">;</span>
+<span class="w">                </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">isdigit</span><span class="p">(</span><span class="n">recvData</span><span class="p">)</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">recvData</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="sc">&#39;.&#39;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="n">line</span><span class="p">[</span><span class="n">lineSize</span><span class="o">++</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">recvData</span><span class="p">;</span>
+
+<span class="w">                    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">lineSize</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="k">sizeof</span><span class="w"> </span><span class="n">line</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                        </span><span class="n">lineSize</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">                    </span><span class="p">}</span>
+<span class="w">                </span><span class="p">}</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// Loop running in background thread.</span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">loop</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">_threadRunning</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">memory_order_relaxed</span><span class="p">))</span><span class="w">  </span><span class="p">{</span>
+<span class="w">            </span><span class="kt">float</span><span class="w"> </span><span class="n">distanceRead</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="o">-&gt;</span><span class="n">getNextReading</span><span class="p">();</span>
+<span class="w">            </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;[&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">_device</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;] Distance: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">distanceRead</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; m&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+
+<span class="w">            </span><span class="n">_latestDistance</span><span class="p">.</span><span class="n">store</span><span class="p">(</span><span class="n">distanceRead</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">memory_order_relaxed</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">};</span>
+</code></pre></div>
+<p>Now that we have an abstraction for the vehicle and the sensor, it's time to tie it all up together.</p>
+<h3 id="distance-detection-logic">Distance Detection Logic</h3>
+<p>As the purpose of this tutorial is to cover how to leverage the sensors, we are taking the most simplistic approach to solving this problem. 
+This means there is obviously a lot of room for improvements towards delivering a resilient and production ready solution; or even to take this to more specific expected behaviors.
+We will cover a few next steps should you want to take it further after we covered the simple solution we offer.</p>
+<p>Back to the <code>main.cpp</code> file in the <code>main</code> function, after we created the abstraction for the vehicle, we create the abstraction for the sensor and connect it.</p>
+<p>After this, we assume we are in checking distance logic. We loop until the condition met is hit, then we exit the loop and stop the vehicle at this distance:</p>
+<div class="highlight"><pre><span></span><code><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">**</span><span class="n">argv</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Create the vehicle instance to connect</span>
+<span class="w">    </span><span class="c1">// We are reusing the Application object from DJI&#39;s sample for clarity only.</span>
+<span class="w">    </span><span class="n">vehicle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Application</span><span class="p">(</span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="n">argv</span><span class="p">);</span>
+
+<span class="w">    </span><span class="n">sensor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">SF30D</span><span class="p">();</span>
+<span class="w">    </span><span class="n">sensor</span><span class="o">-&gt;</span><span class="n">connect</span><span class="p">();</span>
+
+<span class="w">    </span><span class="c1">// Check loop</span>
+<span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">active</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">closeEnough</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.5</span><span class="p">;</span><span class="w"> </span><span class="c1">// in m; 50cm</span>
+
+<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">active</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">float</span><span class="w"> </span><span class="n">currentDistance</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sensor</span><span class="o">-&gt;</span><span class="n">latestDistance</span><span class="p">();</span>
+
+<span class="w">        </span><span class="c1">// Condition to determine a landing opportunity.</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">currentDistance</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">closeEnough</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">currentDistance</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">currentDistance</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">250</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="c1">// 0 and 250 are false reads</span>
+<span class="w">            </span><span class="c1">// We exited the loop flagging we aren&#39;t checking to land, so we are landing.</span>
+<span class="w">            </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Stopping Vehicle...&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+
+<span class="w">            </span><span class="n">vehicle</span><span class="o">-&gt;</span><span class="n">emergencyBreak</span><span class="p">();</span><span class="w"> </span><span class="c1">// Stop the vehicle right now</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="n">usleep</span><span class="p">(</span><span class="mi">250</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>As you can see this is incredibly simple in this form so here are extra next steps for your consideration:</p>
+<h4 id="application-lifecycle-control-from-the-ground">Application lifecycle control from the Ground.</h4>
+<p>This current code will enter in checking the distance logic as soon as it's launched. It's not something that's practical in the real world. </p>
+<p>What you would want is for this app to launch with the life cycle of the vehicle and the logic entering once a pilot, operator or logic triggers it.
+We can't even cover all the way to handle these three scenarios, but assuming you have a pilot and a ground application, you can leverage <a href="https://developer.dji.com/doc/payload-sdk-api-reference/en/practice/mop-channel.html">MOP</a>.
+MOP is a feature of the MobileSDK and PayloadSDK which allows a MobileSDK application to send custom commands to a PayloadSDK application.
+MOP has multiple names in the DJI world. It's also referred to SDK Interconnection and <a href="https://developer.dji.com/api-reference-v5/android-api/Components/IPipelineManager/IPipelineManager.html">Pipeline</a>
+ on the Android MSDK.</p>
+<p>Regardless, they will allow you to build a button on the UI of a MobileSDK app that can trigger this code to enter 'checking the distance' logic.</p>
+<p>MOP can also be used to bring back to the UI the exact distance reading should you want to.
+It can also be leveraged to configure the distance you would want to stay at, or a range of distances. 
+It can also allow for advanced behaviors - including fully autonomous behavior from the vehicle with a control loop against the sensor read.</p>
+<p>Last, if you bring the sensor value to the ground, you can build this autonomy from the MobileSDK side - you will have to account for the extra latency that exist being behind the radio.</p>
+<h4 id="expanding-the-context-of-operation">Expanding the Context of Operation</h4>
+<p>Without knowing exactly what the precision of the distance may be used for, it's just too much speculation as to how to handle the rest of the behavior, but let's take a look at the suggestion we made with the power washing drone.</p>
+<p>In this context, we would be wanting to stay at a distance against a building that is efficient for the washing, accounting for movement deviation. 
+In short, we would want to stay between two distances representing the optimal range of operation.</p>
+<p>Also, we could use sudden changes of distance read as a way of detecting building edges. You could even add a secondary lidar to get two points for better edge detections.</p>
+<p>Both of these capabilities would be simply expended by added a second value for the distance (to create a range) and incorporating more logic to the execution.</p>
+<p>This logic could go all the way to be a complete 'wash the line' behavior that incorporate the lidar into its control loop to control the movement of the vehicle while the behavior is triggered from the ground.</p>
+<p>This becomes a different focus altogether, but we know our sensor will help you get the job done.</p>
 
 
 

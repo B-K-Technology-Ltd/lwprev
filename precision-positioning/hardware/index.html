@@ -72,7 +72,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#hardware" class="md-skip">
+        <a href="#modification-of-the-basic-kit" class="md-skip">
           Skip to content
         </a>
       
@@ -205,7 +205,7 @@
         
   
   <span class="md-ellipsis">
-    Welcome to LightWare's Developer Portal
+    Home
   </span>
   
 
@@ -533,9 +533,18 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#hardware" class="md-nav__link">
+  <a href="#modification-of-the-basic-kit" class="md-nav__link">
     <span class="md-ellipsis">
-      Hardware
+      Modification of the Basic Kit
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#installation-on-the-aircraft" class="md-nav__link">
+    <span class="md-ellipsis">
+      Installation on the Aircraft
     </span>
   </a>
   
@@ -794,9 +803,18 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#hardware" class="md-nav__link">
+  <a href="#modification-of-the-basic-kit" class="md-nav__link">
     <span class="md-ellipsis">
-      Hardware
+      Modification of the Basic Kit
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#installation-on-the-aircraft" class="md-nav__link">
+    <span class="md-ellipsis">
+      Installation on the Aircraft
     </span>
   </a>
   
@@ -819,7 +837,30 @@
 
   <h1>Hardware</h1>
 
-<h2 id="hardware">Hardware</h2>
+<h2 id="modification-of-the-basic-kit">Modification of the Basic Kit</h2>
+<p>First, we need to remove some parts of the previous hardware kit.</p>
+<p>Namely, we won't be using the I2C bus, so we can remove all of this.</p>
+<p>This also allows us to reuse the mounting holes for the SF30/D.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>It is for this versatility of mounting/unmounting that heat set inserts comes handy. 
+As you are about to read, we can screw things directly into the plastic - even with machine screws - but mounting/unmounting would quickly wear the screws holes out without the inserts.</p>
+<p>We are going to use machine screws as to keep the total number of different parts lower, but ideally you would use plastic or wood screws with a coarser thread for a better grip.</p>
+</div>
+<p><img alt="Kit without the I2C parts" src="../../images/kitwithoutthei2cparts.png" /></p>
+<p>We can now prepare the SF30/D by attaching the mounting plate to it. For this, we will use the M3x8mm screws we had, screws them directly into the plastic from the back.</p>
+<p><img alt="SF30/D Back view" src="../../images/sf30dbackview.png" />
+<img alt="SF30/D with mount" src="../../images/sf30dwithmount.png" /></p>
+<p>Next, we can attach the SF30/D mount to the front plate of the kit using M3x8mm screws again. </p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Don't overtighten the screws. The machine screws will hold fine against the layering of the 3D printed part, but within limits.</p>
+</div>
+<p>Last, we can connect the micro USB cable that came with the sensor to the Pi, securing it the zip tie holes using the tie down that were holding the cable together in the packaging. </p>
+<p><img alt="SF30/D Kit Completed" src="../../images/sf30dkitcompleted.png" /></p>
+<h2 id="installation-on-the-aircraft">Installation on the Aircraft</h2>
+<p>At this point, you can simply add the kit on top of the M350 and move on to the code part.</p>
+<p><img alt="SF30/D Kit on M350" src="../../images/sf30dkitonm350.png" /></p>
 
 
 

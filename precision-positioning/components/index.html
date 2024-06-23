@@ -72,7 +72,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#components" class="md-skip">
+        <a href="#sf30d" class="md-skip">
           Skip to content
         </a>
       
@@ -205,7 +205,7 @@
         
   
   <span class="md-ellipsis">
-    Welcome to LightWare's Developer Portal
+    Home
   </span>
   
 
@@ -512,9 +512,9 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#components" class="md-nav__link">
+  <a href="#sf30d" class="md-nav__link">
     <span class="md-ellipsis">
-      Components
+      SF30/D
     </span>
   </a>
   
@@ -794,9 +794,9 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#components" class="md-nav__link">
+  <a href="#sf30d" class="md-nav__link">
     <span class="md-ellipsis">
-      Components
+      SF30/D
     </span>
   </a>
   
@@ -819,35 +819,47 @@
 
   <h1>Components</h1>
 
-<h2 id="components">Components</h2>
-<p>To achieve this, we will leverage four <a href="https://lightwarelidar.com/shop/lw20-c-100-m/">LW20/C</a> lidar sensors.
-These will be used to create a real-time, high frequency plane detection to be incorporated in a custom landing routine running on an onboard computer attached to the M350.</p>
+<p>Since we're reusing the previous hardware setup, the new component list is simple:</p>
 <table>
 <thead>
 <tr>
+<th>Image</th>
 <th>Component</th>
 <th>Role</th>
+<th>Quantity</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>DJI M350</td>
-<td>Main Vehicle</td>
+<td><img alt="image" src="../../images/previouskit.png" style="width:120px; text-align:center" /></td>
+<td><a href="../landing-moving-platform/hardware">Previous Hardware Kit</a></td>
+<td>Compute and sensor hold</td>
+<td>1</td>
 </tr>
 <tr>
-<td>LW20C</td>
-<td>Landing Deck Plane Detection</td>
+<td><img alt="image" src="../../images/sf30d.jpeg" style="width:120px; text-align:center" /></td>
+<td><a href="https://lightwarelidar.com/shop/sf30-d-200-m/">SF30/D Lidar Sensor</a></td>
+<td>Detect the position relative to the object</td>
+<td>1</td>
 </tr>
 <tr>
-<td>Raspberry Pi 5</td>
-<td>Onboard Compute</td>
+<td><img alt="image" src="../../images/sf30dmount.png" style="width:120px; text-align:center" /></td>
+<td><a href="../cad/LW20 M350RTK Mounting Plates.step">Sensor Mount</a></td>
+<td>Holding the SF30/D facing forward</td>
+<td>1</td>
 </tr>
 <tr>
-<td>DJI E-Port Kit</td>
-<td>PSDK Interface</td>
+<td><img alt="image" src="../../images/91290A113_720ffa0a-507b-416c-b5af-22ad90d45eee%404x_638090342177822562.png" style="width:120px; text-align:center" /></td>
+<td><a href="https://www.mcmaster.com/91290A113/">M3 x 8mm Screws</a></td>
+<td>Holding the sensor to the mount and the mount to the front plate.</td>
+<td>4</td>
 </tr>
 </tbody>
 </table>
+<h2 id="sf30d">SF30/D</h2>
+<p>We chose the SF30/D here mostly to demonstrate the flexibility of the LightWare ecosystem. 
+In reality, any of our sensors would do a great work, because their size, capabilities and reliability are all great for the task at hand. </p>
+<p>We also chose to use the USB connection for the same reasons. In the final integration of this concept into a product, you could use the direct serial connector just as well.</p>
 
 
 

@@ -72,7 +72,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#m350-landing-on-a-moving-platform" class="md-skip">
+        <a href="#hardware" class="md-skip">
           Skip to content
         </a>
       
@@ -205,7 +205,7 @@
         
   
   <span class="md-ellipsis">
-    Welcome to LightWare's Developer Portal
+    Home
   </span>
   
 
@@ -455,8 +455,6 @@
       <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
       
-        
-      
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
           
@@ -485,8 +483,6 @@
   
   
   
-    
-  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
@@ -495,9 +491,18 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#plan" class="md-nav__link">
+  <a href="#hardware" class="md-nav__link">
     <span class="md-ellipsis">
-      Plan
+      Hardware
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#behavior" class="md-nav__link">
+    <span class="md-ellipsis">
+      Behavior
     </span>
   </a>
   
@@ -790,8 +795,6 @@
   
   
   
-    
-  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
@@ -800,9 +803,18 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#plan" class="md-nav__link">
+  <a href="#hardware" class="md-nav__link">
     <span class="md-ellipsis">
-      Plan
+      Hardware
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#behavior" class="md-nav__link">
+    <span class="md-ellipsis">
+      Behavior
     </span>
   </a>
   
@@ -823,16 +835,30 @@
                   
 
 
-<h1 id="m350-landing-on-a-moving-platform">M350 Landing on a Moving Platform</h1>
-<p>In this scenario, we are going to walk through the steps to add a capability to the DJI M350 which isn't present on the vehicle by default: <strong>The ability to land on a moving platform</strong>.</p>
-<p>The scope of this tutorial is to focus on how to use our products, so we will skim through the other components and only cover the extent necessary for the whole solution to be reproduceable.</p>
-<h2 id="plan">Plan</h2>
-<p>In order to land a vehicle on a moving platform, we need to first characterize the situation. In this case, moving platform implies a vehicle which landing platform will be affected by it motion. 
-There is obviously the translational effect, but also the three-dimensional effect on the plate which will limit the window of opportunity for the vehicle to commit to a landing.</p>
-<p>In the case of boat, the deck of boat will tilt in two axis in a way that could jeopardize the vehicle's safety.</p>
-<p>To understand when the window of opportunity presents itself, we need to be able to observe in real time the plane represented by the deck and identify a moment of least-risk and commit with understanding of the motion capabilities of the vehicle.</p>
-<p>INSERT DIAGRAM HERE</p>
-<p>Now that we have a decent idea of how we will approach this problem, we can start planning for the components at play and their roles.</p>
+  <h1>Plan</h1>
+
+<p>To position ourselves relative to an object, we need to have distance information relative to the object. 
+There are three dimensions to understand for a full position, but for this context, we are sticking to a single dimension.</p>
+<p><img alt="relative position" src="../../images/relative-position.png" /></p>
+<p>The reason is simple. For the context of any mission/actions, all these dimensions aren't equally relevant to control.</p>
+<p>The axis that represents the most direct path between the vehicle and the object is usually the one dimension we care about most.
+This is compounded by the fact that the other two dimension usually align with the two dimension of the video frame from the main camera used for the pilot to navigate.</p>
+<p><img alt="important-axis" src="../../images/important-axis.png" /></p>
+<p>This is the same situation when you drive a car and don't get an accurate sense of speed looking forward, vs sideways; making the forward dimension the most important.</p>
+<p>This is the dimension we can and should monitor with our lidar sensor.</p>
+<h2 id="hardware">Hardware</h2>
+<p>We are going to reuse the same hardware kit as described in the <a href="../landing-moving-platform">landing on a moving platform</a> scenario, so you'll want to go through the components and hardware steps from that scenario if you haven't before.</p>
+<p>After that, we will add a mount for the SF30/D and connect it to the vehicle using USB</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>We are using this approach to demonstrate the range of options in sensors and connectivity.</p>
+<p>You can just as easily use a LW20 and connect it to the I2C bus we setup in the previous scenario.</p>
+</div>
+<h2 id="behavior">Behavior</h2>
+<p>As for the behavior of the vehicle, we are going to implement a simple emergency brake that will keep us at a fixed distance. 
+This resembles obstacle avoidance with a simple yet important difference: In the context of collision avoidance, we want to remind the user about how much on the verge of a serious problem they are, while in our context, we are operating in a tighter context but an expected one.</p>
+<p>This comes with more work on the ground UX side we won't cover though beyond this note here.</p>
+<p>In terms of expansion, this can go as far as you'd like to - including a complete control loop to follow complex geometries.</p>
 
 
 

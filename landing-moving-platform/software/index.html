@@ -205,7 +205,7 @@
         
   
   <span class="md-ellipsis">
-    Welcome to LightWare's Developer Portal
+    Home
   </span>
   
 
@@ -1040,7 +1040,7 @@
 <h3 id="payload-sdk-raspberry-pi">Payload SDK &amp; Raspberry Pi</h3>
 <p>DJI covers really well how to get the Raspberry Pi setup, so follow the <a href="https://developer.dji.com/doc/payload-sdk-tutorial/en/quick-start/quick-guide/raspberry-pi.html#software-environment-setup">set up steps here</a></p>
 <p>Once you can run the sample code, we can move to the next step.</p>
-<p>Make sure to configure the Raspberry Pi to connect to your local wifi if available.</p>
+<p>Make sure to configure the Raspberry Pi to connect to your local Wi-Fi if available.</p>
 <p>Also, for convenience, make sure you have set up SSH access.</p>
 <p>While you are in the <code>Raspberry Pi Configuration</code> screen (from the top left menu), turn on "I2C"</p>
 <h3 id="lw20c">LW20/C</h3>
@@ -1208,7 +1208,7 @@ These classes are great places to contain it.</p>
 You could just as easily set it at allocation and have a parameter-less connect function.
 This is just a matter of preference.</p>
 </div>
-<p>Now that we have a single sensor imlementation sorted, we need to move onto the <code>SensorArray</code></p>
+<p>Now that we have a single sensor implementation sorted, we need to move onto the <code>SensorArray</code></p>
 <p>Again, this object is a convenience luxury which makes the main business logic really light and abstracted behind trusted classes.</p>
 <p>As before, we start with the header call we will need and class declaration.</p>
 <div class="highlight"><pre><span></span><code><span class="c1">//</span>
@@ -1321,10 +1321,10 @@ We will cover a few next steps should you want to take it further after we cover
 <p>As you can see this is incredibly simple in this form so here are extra next steps for your consideration:</p>
 <h4 id="maintaining-the-application-active-until-triggered-from-the-ground">Maintaining the Application Active Until Triggered from the Ground.</h4>
 <p>This current code will enter in checking to land logic as soon as it's launched. It's not something that's practical in the real world. </p>
-<p>What you'd want is for this app to launch with the life cycle of the vehicle and the logic entering once a pilot, operator or logic triggers it.
+<p>What you would want is for this app to launch with the life cycle of the vehicle and the logic entering once a pilot, operator or logic triggers it.
 We can't even cover all the way to handle these three scenarios, but assuming you have a pilot and a ground application, you can leverage <a href="https://developer.dji.com/doc/payload-sdk-api-reference/en/practice/mop-channel.html">MOP</a>.
 MOP is a feature of the MobileSDK and PayloadSDK which allows a MobileSDK application to send custom commands to a PayloadSDK application.
-MOP has multiple names in the DJI world. It's also refered to SDK Interconnection and <a href="https://developer.dji.com/api-reference-v5/android-api/Components/IPipelineManager/IPipelineManager.html">Pipeline</a>
+MOP has multiple names in the DJI world. It's also referred to SDK Interconnection and <a href="https://developer.dji.com/api-reference-v5/android-api/Components/IPipelineManager/IPipelineManager.html">Pipeline</a>
  on the Android MSDK.</p>
 <p>Regardless, they will allow you to build a button on the UI of a MobileSDK app that can trigger this code to enter 'checking to land' logic.</p>
 <h4 id="following-the-landing-target">Following the Landing Target.</h4>
